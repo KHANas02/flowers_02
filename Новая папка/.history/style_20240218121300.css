@@ -1,0 +1,453 @@
+
+body {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background: $bg;
+  justify-content: center;
+  align-items: center;
+  .wrap {
+    width: 580px;
+    height: 460px;
+    .toggle {
+      display: inline-block;
+      float: left;
+      background: #fff;
+      width: 250px;
+      height: 100px;
+      box-shadow: 0 5px 25px -15px $black;
+      position: relative;
+      margin: 50px 20px 0px;
+      border-radius: 100px;
+      opacity: 0;
+      animation: fadein 1.5s ease-in 1 forwards;
+      &:before {
+        position: absolute;
+        color: darken($bg, 15%);
+        font-family: "Nunito";
+        letter-spacing: 3px;
+        width: 100%;
+        text-align: center;
+        top: -25px;
+        font-size: 20px;
+      }
+      .toppings {
+        transform: scale(0) rotate(0deg);
+        transition: 0.15s ease-in-out;
+        @for $i from 1 through 5 {
+          &:nth-of-type(#{$i}) {
+            left: #{$i * 18}px;
+            top: #{$i * 14}px;
+            margin-top: 10.5px;
+            margin-left: 5px;
+          }
+        }
+        &:nth-of-type(4) {
+          left: 55px;
+          top: 28px;
+          margin-top: 0;
+          margin-left: 0;
+        }
+        &:nth-of-type(5) {
+          left: 25px;
+          top: 58px;
+          margin-top: 0;
+          margin-left: 0;
+        }
+      }
+      @for $i from 1 through 6 {
+        &:nth-of-type(#{$i}) {
+          animation-delay: #{$i / 10}s;
+        }
+      }
+      &:nth-of-type(1) {
+        &:before {
+          content: "PEPPERONI";
+        }
+        .toppings {
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          border-radius: 100%;
+          background: $roni;
+          position: absolute;
+        }
+      }
+      &:nth-of-type(2) {
+        &:before {
+          content: "SAUSAGE";
+        }
+        .toppings {
+          position: absolute;
+          width: 10px;
+          height: 5px;
+          background: $sausage;
+          position: absolute;
+          border-radius: 5px 5px 0 0;
+          &:before {
+            content: "";
+            position: absolute;
+            width: 50%;
+            height: 75%;
+            border-radius: 15px 15px 0 0;
+            background: $sausage;
+            bottom: 0;
+            left: -2.5px;
+          }
+        }
+      }
+      &:nth-of-type(3) {
+        &:before {
+          content: "PINEAPPLE";
+        }
+        .toppings {
+          position: absolute;
+          width: 5px;
+          height: 5px;
+          background: $pineapple;
+          position: absolute;
+          &:before {
+            content: "";
+            position: absolute;
+            width: 50%;
+            height: 75%;
+            border-radius: 0;
+            background: darken($pineapple, 20%);
+            bottom: 0;
+            left: -2.5px;
+          }
+        }
+      }
+      &:nth-of-type(3) {
+        &:before {
+          content: "PINEAPPLE";
+        }
+        .toppings {
+          position: absolute;
+          width: 5px;
+          height: 5px;
+          background: $pineapple;
+          position: absolute;
+          &:before {
+            content: "";
+            position: absolute;
+            width: 50%;
+            height: 75%;
+            border-radius: 0;
+            background: darken($pineapple, 20%);
+            bottom: 0;
+            left: -2.5px;
+          }
+        }
+      }
+      &:nth-of-type(4) {
+        &:before {
+          content: "PEPPERS";
+        }
+        .toppings {
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          background: $cheese;
+          position: absolute;
+          border-radius: 100%;
+          box-shadow: inset 3px 0 0 $pepper;
+          &:before {
+            content: "";
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            top: -5px;
+            background: $cheese;
+            position: absolute;
+            border-radius: 100%;
+            box-shadow: inset 3px 0 0 $pepper;
+          }
+        }
+      }
+      &:nth-of-type(5) {
+        &:before {
+          content: "NY STYLE";
+        }
+        input {
+          &:checked ~ .pizza {
+            animation: pizzaflip2 0.75s linear 1 forwards;
+            @keyframes pizzaflip2 {
+              0% {
+                transform: translateX(0) scale(1);
+              }
+              25% {
+                transform: translateX(75px) translateY(-15px) scale(1.5);
+              }
+              75% {
+                transform: translateX(100px) translateY(-15px) scale(1.5);
+              }
+              100% {
+                transform: translateX(150px) scale(1.35) rotateX(-20deg);
+              }
+            }
+          }
+        }
+      }
+      &:nth-of-type(6) {
+        &:before {
+          content: "CHICAGO STYLE";
+        }
+        input {
+          &:checked ~ .pizza {
+            .inner {
+              animation: spinwobble2 0.9s linear 1 forwards;
+              @keyframes spinwobble2 {
+                0% {
+                  transform: rotateX(0deg) rotate(0deg);
+                }
+                40% {
+                  transform: rotateX(-30deg) rotate(180deg);
+                }
+                60% {
+                  transform: rotateX(-30deg) rotate(360deg);
+                }
+                80% {
+                  transform: rotateX(30deg) rotate(360deg);
+                  box-shadow: inset 0 0 0 10px $crust, inset 0 0 0px 0px $cheese,
+                    0 0px 0px darken($crust, 10%), 0 0px darken($crust, 12.5%);
+                  background: linear-gradient(
+                      45deg,
+                      $t,
+                      $t 49%,
+                      darken($cheese, 10%) 49%,
+                      darken($cheese, 10%) 51%,
+                      $t 51%
+                    ),
+                    linear-gradient(
+                      -45deg,
+                      $t,
+                      $t 49%,
+                      darken($cheese, 10%) 49%,
+                      darken($cheese, 10%) 51%,
+                      $t 51%
+                    ),
+                    linear-gradient(
+                      90deg,
+                      $t,
+                      $t 49%,
+                      darken($cheese, 10%) 49%,
+                      darken($cheese, 10%) 51%,
+                      $t 51%
+                    ),
+                    linear-gradient(
+                      180deg,
+                      $t,
+                      $t 49%,
+                      darken($cheese, 10%) 49%,
+                      darken($cheese, 10%) 51%,
+                      $t 51%
+                    ),
+                    $cheese;
+                }
+                100% {
+                  transform: rotateX(0deg) rotate(360deg) translateY(-20px);
+                  box-shadow: inset 0 0 0 10px $crust,
+                    inset 0 0 5px 13px $cheese, 0 10px 5px darken($crust, 10%),
+                    0 15px darken($crust, 12.5%);
+                  background: linear-gradient(
+                      45deg,
+                      $t,
+                      $t 49%,
+                      darken($roni, 10%) 49%,
+                      darken($roni, 10%) 51%,
+                      $t 51%
+                    ),
+                    linear-gradient(
+                      -45deg,
+                      $t,
+                      $t 49%,
+                      darken($roni, 10%) 49%,
+                      darken($roni, 10%) 51%,
+                      $t 51%
+                    ),
+                    linear-gradient(
+                      90deg,
+                      $t,
+                      $t 49%,
+                      darken($roni, 10%) 49%,
+                      darken($roni, 10%) 51%,
+                      $t 51%
+                    ),
+                    linear-gradient(
+                      180deg,
+                      $t,
+                      $t 49%,
+                      darken($roni, 10%) 49%,
+                      darken($roni, 10%) 51%,
+                      $t 51%
+                    ),
+                    $roni;
+                }
+              }
+            }
+          }
+        }
+      }
+      @keyframes fadein {
+        0% {
+          opacity: 0;
+        }
+        75% {
+          opacity: 0;
+          transform: scale(0);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      input {
+        opacity: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 999;
+      }
+      .shadow {
+        position: absolute;
+        z-index: 0;
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+        background: $black;
+        top: calc(50% - 5px);
+        left: 45px;
+        box-shadow: 0 10px 30px 30px $black;
+        transition: 0.75s linear;
+        opacity: 0.25;
+        animation: flipback 0.25s linear 1 forwards;
+      }
+      .pizza {
+        position: absolute;
+        left: 5px;
+        top: 5px;
+        width: 90px;
+        height: 90px;
+        border-radius: 100%;
+        transition: 0.2s ease-in-out;
+        transform: translateX(0);
+        animation: flipback 0.25s linear 1 forwards;
+        transform-style: preserve-3d;
+        perspective: 10000px;
+        @keyframes flipback {
+          0% {
+            transform: translateX(150px) scale(1);
+          }
+          100% {
+            transform: translateX(0px) scale(1);
+          }
+        }
+        .inner {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(
+              45deg,
+              $t,
+              $t 49%,
+              darken($cheese, 10%) 49%,
+              darken($cheese, 10%) 51%,
+              $t 51%
+            ),
+            linear-gradient(
+              -45deg,
+              $t,
+              $t 49%,
+              darken($cheese, 10%) 49%,
+              darken($cheese, 10%) 51%,
+              $t 51%
+            ),
+            linear-gradient(
+              90deg,
+              $t,
+              $t 49%,
+              darken($cheese, 10%) 49%,
+              darken($cheese, 10%) 51%,
+              $t 51%
+            ),
+            linear-gradient(
+              180deg,
+              $t,
+              $t 49%,
+              darken($cheese, 10%) 49%,
+              darken($cheese, 10%) 51%,
+              $t 51%
+            ),
+            $cheese;
+          box-shadow: inset 0 0 0 10px $crust;
+          border-radius: 100%;
+        }
+      }
+      input {
+        &:checked ~ .shadow {
+          animation: shadowslide 0.75s linear 1 forwards;
+          @keyframes shadowslide {
+            0% {
+              transform: translateX(0) scale(1);
+            }
+            25% {
+              transform: translateX(75px) translateY(20px) scale(0.75);
+            }
+            75% {
+              transform: translateX(100px) translateY(20px) scale(0.75);
+            }
+            100% {
+              transform: translateX(150px) scale(1);
+            }
+          }
+        }
+        &:checked ~ .pizza {
+          animation: pizzaflip 0.75s linear 1 forwards;
+          .toppings {
+            @for $i from 1 through 5 {
+              &:nth-of-type(#{$i}) {
+                transition-delay: #{$i/40 + 0.75}s;
+                transform: scale(1) rotate(#{$i * 40}deg);
+              }
+            }
+          }
+          @keyframes pizzaflip {
+            0% {
+              transform: translateX(0) scale(1);
+            }
+            25% {
+              transform: translateX(75px) translateY(-15px) scale(1.5);
+            }
+            75% {
+              transform: translateX(100px) translateY(-15px) scale(1.5);
+            }
+            100% {
+              transform: translateX(150px) scale(1);
+            }
+          }
+          .inner {
+            animation: spinwobble 0.75s linear 1 forwards;
+            @keyframes spinwobble {
+              0% {
+                transform: rotateX(0deg) rotate(0deg);
+              }
+              30% {
+                transform: rotateX(-30deg) rotate(120deg);
+              }
+              70% {
+                transform: rotateX(30deg) rotate(240deg);
+              }
+              100% {
+                transform: rotateX(0deg) rotate(360deg);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
